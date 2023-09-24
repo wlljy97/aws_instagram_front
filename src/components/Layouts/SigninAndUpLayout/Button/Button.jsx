@@ -3,9 +3,11 @@ import React from 'react';
 import { css } from "@emotion/react";
 import * as S from "./Style"
 
-function Button({ name }) {
+function Button({ disabled, onClick, text }) {
     return (
-        <button>{name}</button>
+        <div css={S.SLayout}>
+            <button css={S.SButton} disabled={disabled} onClick={onClick}>{text}</button>
+        </div>
     );
 }
 

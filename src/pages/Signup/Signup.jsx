@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from 'react';
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
+import * as S from "./Style"
+
 import SigninAndUpLayout from '../../components/Layouts/SigninAndUpLayout/SigninAndUpLayout';
 import Top from '../../components/Layouts/SigninAndUpLayout/Top/Top';
 import Input from '../../components/Layouts/SigninAndUpLayout/Input/Input';
 import OrBar from '../../components/Layouts/SigninAndUpLayout/OrBar/OrBar';
 import { signup } from '../../apis/api/account';
+import Button from '../../components/Layouts/SigninAndUpLayout/Button/Button';
+import { RiKakaoTalkFill } from 'react-icons/ri'
 
 function Signup(props) {
     const emptyAccount = {
@@ -36,14 +42,21 @@ function Signup(props) {
         <SigninAndUpLayout>
             <Top>
                 <div>
-                    <div>친구들의 사진과 동영상을 보려면 가입하세요.</div>
-                    <button>Kakao로 로그인</button>
+                    <div css={S.STopTextBox}>
+                        <span css={S.STopText}>친구들의 사진과 동영상을 보려면 가입하세요.</span>
+                    </div>
+                    <div css={S.SKakaoBox}>
+                        <button css={S.SKakaoButton}>
+                            <RiKakaoTalkFill css={S.SKakaoLogo}/>
+                            카카오로 로그인
+                        </button>
+                    </div>
                     <OrBar />
                     <Input name={"phoneAndEmail"} placeholder={"휴대폰 번호 또는 이메일 주소"} changeAccount={changeAccount} />
                     <Input name={"name"} placeholder={"성명"} changeAccount={changeAccount} />
                     <Input name={"username"} placeholder={"사용자 이름"} changeAccount={changeAccount} />
                     <Input type={"password"} name={"password"} placeholder={"비밀번호"} changeAccount={changeAccount} />
-                    <button disabled={isAccountValuesEmpty} onClick={handleSignupSubmit}>가입</button>
+                    <Button text={"가입"} disabled={isAccountValuesEmpty} onClick={handleSignupSubmit}/>
                 </div>
             </Top>
         </SigninAndUpLayout>
