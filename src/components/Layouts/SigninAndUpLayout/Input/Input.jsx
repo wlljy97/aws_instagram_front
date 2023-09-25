@@ -1,15 +1,46 @@
 import React, { useEffect, useRef, useState } from 'react';
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
 import * as S from "./Style"
+import { NAME, PASSWORD, PHONE_AND_EMAIL, USERNAME } from '../../../../constants/regex';
+import { ImCancelCircle } from "react-icons/im"
+import { BsCheckCircle } from "react-icons/bs"
 
 function Input({ type, placeholder, name, changeAccount}) {
     const [ isEmpty, setIsEmpty ] = useState(true);
-    const [ inputValue, setInputValue ] = useState("")
+    const [ inputValue, setInputValue ] = useState("");
+    const [ inputState, setInputState ] = useState("");
     
     const handleInputChange = (e) => {
         setInputValue(e.target.value);
         changeAccount(e.target.name, e.target.value)
+    }
+
+    const handleInputOnblur = (e) => {
+        const value = e.target.value;
+        let regex = null;
+
+        switch(e.target.name) {
+            case "phoneAndEmail" : regex = PHONE_AND_EMAIL; break;
+            case "name" : regex = NAME; break;
+            case "username" : regex = USERNAME; break;
+            case "password" : regex = PASSWORD; break;
+            default : regex = null;
+        }
+
+        // 체크 표시
+        if(!!regex && !regex.test(value)) {
+            setInputState(<><ImCancelCircle/></>);
+            
+        } else if(!!regex && regex.test(value)) {
+            setInputState(<><BsCheckCircle/></>);
+            
+        } else {
+            setInputState("");
+        }
+    }
+
+    const handleInputOnFocus = () => {
+        setInputState("");
     }
 
     useEffect(() => {
@@ -19,11 +50,15 @@ function Input({ type, placeholder, name, changeAccount}) {
     return (
         <div css={S.SLayout}>
             <label css={S.SInput(isEmpty)}>
-                <input type={type} name={name} onChange={handleInputChange} />
+                <input type={type} name={name} 
+                onChange={handleInputChange} 
+                onBlur={handleInputOnblur}
+                onFocus={handleInputOnFocus}
+                />
                 <span>{placeholder}</span>
             </label>
             <div css={S.SStateBox}>
-
+                {inputState}
             </div>
         </div>
     );
