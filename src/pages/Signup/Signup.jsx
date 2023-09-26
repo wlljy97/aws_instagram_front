@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom';
 function Signup(props) {
     const navigate = useNavigate();
     const emptyAccount = {
-        phoneAndEmail: "",
+        phoneOrEmail: "",
         name: "",
         username: "",
         password: ""
@@ -48,8 +48,8 @@ function Signup(props) {
 
             if(keys.includes("usernmae")) {
                 setErrorMsg(responseErrorMsg.username);
-            } else if(keys.includes("phoneAndEmail")) {
-                setErrorMsg(responseErrorMsg.phoneAndEmail)
+            } else if(keys.includes("phoneOrEmail")) {
+                setErrorMsg(responseErrorMsg.phoneOrEmail)
             } else if(keys.includes("name")){
                 setErrorMsg(responseErrorMsg.name);
             } else if(keys.includes("password")) {
@@ -72,7 +72,7 @@ function Signup(props) {
                         </button>
                     </div>
                     <OrBar />
-                    <Input name={"phoneAndEmail"} placeholder={"휴대폰 번호 또는 이메일 주소"} changeAccount={changeAccount} />
+                    <Input name={"phoneOrEmail"} placeholder={"휴대폰 번호 또는 이메일 주소"} changeAccount={changeAccount} />
                     <Input name={"name"} placeholder={"성명"} changeAccount={changeAccount} />
                     <Input name={"username"} placeholder={"사용자 이름"} changeAccount={changeAccount} />
                     <Input type={"password"} name={"password"} placeholder={"비밀번호"} changeAccount={changeAccount} />

@@ -6,7 +6,7 @@ function AuthRoute({ element }) { // 상태
     const location = useLocation();
     const pathname = location.pathname;
     const permitAllPath = ["/accounts"]
-    const [ authenticated, setAuthenticated ] = useState(true); // true이면 로그인이 되어진 상태, false 로그인 해야함
+    const [ authenticated, setAuthenticated ] = useState(false); // true이면 로그인이 되어진 상태, false 로그인 해야함
 
     // 인증 절차
     for(let path of permitAllPath) {
