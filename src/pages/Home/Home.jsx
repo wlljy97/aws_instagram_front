@@ -1,6 +1,7 @@
 import React from 'react';
 import { getUser } from '../../apis/api/user';
 import jwt_Decode from 'jwt-decode';
+import RootContainer from '../../components/Container/RootContainer/RootContainer';
 
 function Home(props) {
     try {
@@ -14,9 +15,9 @@ function Home(props) {
     }
     
     return (
-        <div>
+        <RootContainer>
             
-        </div>
+        </RootContainer>
     );
 }
 
